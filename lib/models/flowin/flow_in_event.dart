@@ -5,7 +5,9 @@ abstract class FlowInEvent extends Equatable {
   List<Object?> get props => [];
 }
 
-class FlowInLoadingEvent extends FlowInEvent {}
+class FlowInLoadingEvent extends FlowInEvent {
+  FlowInLoadingEvent();
+}
 
 class FlowInCreationEvent extends FlowInEvent {
   final FlowInModel newFlowIn;

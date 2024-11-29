@@ -1,3 +1,7 @@
+import 'package:arocs_controller/models/Inventories/inventory_service.dart';
+import 'package:arocs_controller/models/flowin/flow_in_service.dart';
+import 'package:arocs_controller/models/flowout/flow_out_service.dart';
+import 'package:arocs_controller/models/robots/robot_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -23,16 +27,16 @@ class MyApp extends StatelessWidget {
           create: (context) => PagesBloc()..add(PagesLoadingEvent()),
         ),
         BlocProvider<InventoryBloc>(
-          create: (context) => InventoryBloc()..add(InventoryLoadingEvent()),
+          create: (context) => InventoryBloc(inventoryService: InventoryService())..add(InventoryLoadingEvent()),
         ),
         BlocProvider<RobotBloc>(
-          create: (context) => RobotBloc()..add(RobotLoadingEvent()),
+          create: (context) => RobotBloc(robotService: RobotService())..add(RobotLoadingEvent()),
         ),
         BlocProvider<FlowInBloc>(
-          create: (context) => FlowInBloc()..add(FlowInLoadingEvent()),
+          create: (context) => FlowInBloc(flowInService: FlowInService())..add(FlowInLoadingEvent()),
         ),
         BlocProvider<FlowOutBloc>(
-          create: (context) => FlowOutBloc()..add(FlowOutLoadingEvent()),
+          create: (context) => FlowOutBloc(flowOutService: FlowOutService())..add(FlowOutLoadingEvent()),
         ),
         BlocProvider<WarehouseBloc>(
           create: (context) => WarehouseBloc()..add(WarehouseLoadingEvent()),

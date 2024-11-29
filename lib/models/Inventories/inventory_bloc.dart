@@ -1,15 +1,18 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+// import 'dart:developer' as developer;
 
 import 'inventory_model.dart';
+import 'inventory_service.dart';
 
 part 'inventory_state.dart';
 part 'inventory_event.dart';
 
 class InventoryBloc extends Bloc<InventoryEvent, InventoryState> {
+  final InventoryService inventoryService;
   List<InventoryModel> items = [];
 
-  InventoryBloc() : super(InventoryInitial()) {
+  InventoryBloc({required this.inventoryService}) : super(InventoryInitial()) {
     
     // ===== Template =====
     on<InventoryEvent>((event, emit) {
@@ -17,13 +20,18 @@ class InventoryBloc extends Bloc<InventoryEvent, InventoryState> {
     });
 
 
-    // ===== Loading =====
-    on<InventoryLoadingEvent>((event, emit) {
+    // ===== Get All =====
+    on<InventoryLoadingEvent>((event, emit) async{
       emit(InventoryLoading());
-
-      emit(InventoryLoaded(items: items));
+      // developer.log('Loading Inventory');
+      try {
+        final inventoryList = await inventoryService.getAllProducts();
+        emit(InventoryLoaded(items: inventoryList));
+      } catch (e) {
+        emit(InventoryError(e: 'Failed to load flow ins: $e'));
+      }
+      // emit(InventoryLoaded(items: items));
     });
-
 
     // ===== Creation =====
     on<InventoryCreationEvent>((event, emit) {
@@ -39,7 +47,7 @@ class InventoryBloc extends Bloc<InventoryEvent, InventoryState> {
     on<InventoryIncrementEvent>((event, emit) {
       emit(InventoryLoading());
       List<InventoryModel> updatedItems = List.from(items);
-      updatedItems[event.index] = updatedItems[event.index].copyWith(itemCount: updatedItems[event.index].itemCount + event.count);
+      updatedItems[event.index] = updatedItems[event.index].copyWith(itemInStock: updatedItems[event.index].itemInStock + event.count);
       items = updatedItems;
       emit(InventoryLoaded(items: updatedItems));
     });
@@ -47,7 +55,7 @@ class InventoryBloc extends Bloc<InventoryEvent, InventoryState> {
     on<InventoryDecrementEvent>((event, emit) {
       emit(InventoryLoading());
       List<InventoryModel> updatedItems = List.from(items);
-      updatedItems[event.index] = updatedItems[event.index].copyWith(itemCount: updatedItems[event.index].itemCount - event.count);
+      updatedItems[event.index] = updatedItems[event.index].copyWith(itemInStock: updatedItems[event.index].itemInStock - event.count);
       items = updatedItems;
       emit(InventoryLoaded(items: updatedItems));
     });

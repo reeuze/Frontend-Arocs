@@ -4,7 +4,7 @@ abstract class FlowOutState extends Equatable {
   const FlowOutState();
 
   @override
-  List<Object> get props => [];
+  List<Object?> get props => [];
 }
 
 class FlowOutInitial extends FlowOutState {}
@@ -18,4 +18,13 @@ class FlowOutLoaded extends FlowOutState {
 
   @override
   List<Object> get props => [flowOuts];
+}
+
+class FlowOutError extends FlowOutState {
+  final String e;
+
+  const FlowOutError({required this.e});
+
+  @override
+  List<Object?> get props => [e];
 }

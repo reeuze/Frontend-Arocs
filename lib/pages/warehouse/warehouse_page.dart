@@ -22,7 +22,7 @@ class WarehousePage extends StatelessWidget {
                 onPressed: () {
                   // do something
                 }, 
-                child: Text('Submit'),
+                child: const Text('Submit'),
               ),
               const SizedBox(height: 30,)
             ],

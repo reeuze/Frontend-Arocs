@@ -70,7 +70,23 @@ class InventoryPage extends StatelessWidget {
                             flex: 3,
                             child: Center(
                               child: Text(
-                                'Item Count'
+                                'Item Varian'
+                              ),
+                            ),
+                          ),
+                          Expanded(
+                            flex: 3,
+                            child: Center(
+                              child: Text(
+                                'Item stock minimum'
+                              ),
+                            ),
+                          ),
+                          Expanded(
+                            flex: 3,
+                            child: Center(
+                              child: Text(
+                                'Item In Stock'
                               ),
                             ),
                           ),

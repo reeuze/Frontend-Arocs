@@ -45,7 +45,7 @@ class _FlowoutCreationState extends State<FlowoutCreation> {
         TextButton(
           child: const Text("Create"),
           onPressed: () {
-            context.read<FlowOutBloc>().add(FlowOutCreationEvent(newFlowOut: FlowOutModel(flowOutUID: Uuid().v4(), flowOutQuantity: 0, totalQuantity: int.parse(_countController.text), flowOutDate: DateTime.now(), flowOutStatus: FlowOutStatus.waiting)));
+            context.read<FlowOutBloc>().add(FlowOutCreationEvent(newFlowOut: FlowOutModel(flowOutUID: const Uuid().v4(), flowOutQuantity: 0, totalQuantity: int.parse(_countController.text), flowOutDate: DateTime.now(), flowOutStatus: FlowOutStatus.draft)));
             Navigator.of(context).pop();
           },
         ),

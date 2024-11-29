@@ -75,7 +75,6 @@ class PagesBloc extends Bloc<PagesEvent, PagesState> {
       emit(PagesLoaded(pages: updatedPages, loaded: (state as PagesLoaded).loaded));
     });
 
-
     // Drawer Change using this Event
     on<ChangedDashboardEvent>((event, emit) {
       allPages[(state as PagesLoaded).loaded] = pages;

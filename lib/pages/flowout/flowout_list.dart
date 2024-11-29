@@ -58,8 +58,8 @@ class FlowoutList extends StatelessWidget {
                 flex: 1,
                 child: Center(
                   child: Text(
-                    (flowOut.flowOutStatus == FlowOutStatus.waiting) ? 'Waiting' :
-                    (flowOut.flowOutStatus == FlowOutStatus.ongoing) ? 'OnGoing' :
+                    (flowOut.flowOutStatus == FlowOutStatus.draft) ? 'draft' :
+                    (flowOut.flowOutStatus == FlowOutStatus.on_progress) ? 'on progress' :
                     'Done'
                   ),
                 ),
@@ -67,7 +67,7 @@ class FlowoutList extends StatelessWidget {
               Container(
                 decoration: BoxDecoration(
                   color: (flowOut.flowOutStatus == FlowOutStatus.done) ? Colors.green :
-                         (flowOut.flowOutStatus == FlowOutStatus.ongoing) ? Colors.yellow :
+                         (flowOut.flowOutStatus == FlowOutStatus.on_progress) ? Colors.yellow :
                          Colors.orange,
                   borderRadius: BorderRadius.circular(3)
                 ),

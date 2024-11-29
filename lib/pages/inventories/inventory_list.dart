@@ -57,7 +57,23 @@ class InventoryList extends StatelessWidget {
                 flex: 3,
                 child: Center(
                   child: Text(
-                    item.itemCount.toString()
+                    item.itemVarian
+                  ),
+                ),
+              ),
+              Expanded(
+                flex: 3,
+                child: Center(
+                  child: Text(
+                    item.itemStockMinimum.toString()
+                  ),
+                ),
+              ),
+              Expanded(
+                flex: 3,
+                child: Center(
+                  child: Text(
+                    item.itemInStock.toString()
                   ),
                 ),
               ),
@@ -65,7 +81,7 @@ class InventoryList extends StatelessWidget {
                 height: 24,
                 width: 16,
                 decoration: BoxDecoration(
-                  color: (item.itemCount != 0) ? Colors.green : Colors.red,
+                  color: (item.itemInStock >= item.itemStockMinimum) ? Colors.green : Colors.red,
                   borderRadius: BorderRadius.circular(3)
                 ),
               ),

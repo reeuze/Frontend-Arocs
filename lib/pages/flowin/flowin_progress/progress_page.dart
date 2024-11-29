@@ -9,7 +9,7 @@ class ProgressPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: Column(
+      child: const Column(
         children: [
           
         ],

@@ -36,7 +36,7 @@ class FlowinList extends StatelessWidget {
                 flex: 3,
                 child: Center(
                   child: Text(
-                    "...${flowIn.flowInUID.split('-').last}"
+                    "...${flowIn.flowInUID?.split('-').last}"
                   ),
                 ),
               ),
